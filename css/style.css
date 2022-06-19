@@ -1,0 +1,198 @@
+/*Обнуляем все отсутпы*/
+* {
+	margin: 0;
+	padding: 0; 
+}
+body {
+	font-family: Helvetica, Tahoma, Arial;
+  background-color: #F8F8FF;
+}
+header {
+	background-color: lightgrey;
+	height: 9.5em;
+  width: 80em;
+  margin: 0 auto;
+}
+/*Логотип*/
+header > a > img {
+	display: inline-block;
+	width: 5em;
+	margin-top: 1em;
+	margin-left: 14em;
+	vertical-align: middle; /*Выравнивание средней точки элемента по базовой линии родителя
+	плюс половина высоты родительского элемента.*/
+}
+header > a > img:hover {
+	-webkit-transform: scale(1.04, 1.04); /*масштабирует элемент*/
+  -ms-transform: scale(1.04, 1.04);
+  transform: scale(1.04, 1.04);
+}
+header > h1 {
+	display: inline-block;
+	font-size: 2.5em;
+	vertical-align: middle;
+	margin-top: 0.6em;
+	margin-left: 1em;
+	color: #45464F;
+
+}
+/*Меню*/
+.menu {
+  width: 60em;
+  margin: auto;
+}
+.menu li {
+  display: inline-block;
+  padding-left: 18px; 
+}
+.menu li:first-child {
+  padding-left: 53px;
+}
+.menu a {
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: rgb(128, 128, 128);
+  font-size: 1.5em;
+}
+.menu a:first-child {
+  margin-left: 0;
+}
+.menu a:hover {
+  color: rgb(105, 105, 105);
+  -webkit-transform: scale(1.03, 1.03);
+  -ms-transform: scale(1.03, 1.03);
+  transform: scale(1.03, 1.03);
+}
+main {
+	position: relative;
+	background-color: whitesmoke;
+	width: 80em;
+	margin: auto;
+}
+main > h1 {
+  text-align: center;
+  padding-top: 40px;
+  color: rgb(105, 105, 105);
+  font-size: 26px;
+}
+.image {
+	width: 60em;
+	margin: auto;
+	margin-top: 0.8em;
+}
+main > section > article {
+	position: relative;
+	width: 60em;
+	margin: auto;
+}
+main > section > article > h3 {
+    color: dimgray;
+    text-align: center;
+    margin-top: 1.5em;
+}
+main > section > article > p {
+    text-align: justify;
+    margin-top: 1em;
+    color: #353B40;
+}
+figure > figcaption {
+  text-align: center;
+  color: rgb(169, 169, 169);
+  padding-top: 0.9em;
+  padding-bottom: 0.6em;
+}
+#indent {
+	padding-bottom: 5em;
+}
+/*Форма*/
+form {
+  background-color: whitesmoke;
+  padding: 17px;
+  font-size: 18px;
+  text-align: center;
+}
+form label {
+  color: rgb(105, 105, 105);
+}
+div {
+  display: block;
+  margin: 15px;
+  color: #353B40;
+}
+input.button {
+  font-size: 22px;
+  color: #474646;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #b4b4b4;
+  margin-bottom: 45px;
+}
+input.button:hover {
+  background-color: #aaaaaa;
+  color: #454444;
+}
+input:required {
+  background-color: #DCDCDC;
+  border: 1px solid #C0C0C0;
+  padding-left: 8px;
+}
+textarea:required {
+  background-color: #DCDCDC;
+  border: 1px solid #C0C0C0;
+  padding-left: 8px;
+  padding-top: 10px;
+}
+input:required:hover {
+  background-color: #fcfbfb;
+}
+textarea:required:hover {
+  background-color: #fcfbfb;
+}
+#name, #mail {
+  width: 370px;
+  height: 34px;
+
+}
+#message {
+  width: 370px;
+  height: 120px;
+}
+ul > li {
+  list-style-type: none;
+}
+form > div > ul > li:first-child {
+  padding-bottom: 8px;
+  text-align: left;
+  padding-left: 420px;
+}
+#indent {
+  padding-bottom: 5em;
+}
+/*Подвал сайта*/
+footer {
+	position: relative;
+	background-color: lightgrey;
+	height: 9em;
+  width: 80em;
+  margin: 0 auto;
+}
+.footer li {
+  display: block;
+  padding-top: 0.8em;
+  color: grey;
+  font-size: 1em;
+  text-align: center;
+}
+.footer a {
+  display: block;
+  position: relative;
+  top: 0.8em;
+  padding: 8px 10px;
+  text-decoration: none;
+  color: rgb(128, 128, 128);
+  font-size: 1em;
+}
+.footer a:hover {
+  color: rgb(105, 105, 105);
+}
