@@ -24,7 +24,7 @@ class Sentence
 			return new Set (this.cells)
 		else
 			return new Set()
-		
+
 	}
 
 	known_safes()
@@ -35,30 +35,30 @@ class Sentence
 			return new Set (this.cells)
 		else
 			return new Set()
-		
+
 	}
 
 	mark_safe(cell)
 	{
-		//Обновляет внутреннее представление знаний, 
-		//учитывая, что ячейка известна как безопасная.	
+		//Обновляет внутреннее представление знаний,
+		//учитывая, что ячейка известна как безопасная.
 	if (this.cells.has(cell))
 		this.cells.delete(cell)
-		
+
 
 	}
 
 
 	mark_mine(cell)
 	{
-		//Обновляет внутреннее представление знаний, 
+		//Обновляет внутреннее представление знаний,
 		//учитывая, что ячейка изсвестна как мина.
 		if (this.cells.has(cell))
 		{
 			this.cells.delete(cell);
 			--this.count;
 }
-		
+
 	}
 
 	infer_from(sentence2)
@@ -68,7 +68,7 @@ class Sentence
 		let set1 = this.cells;
 		let set2 = sentence2.cells;
 		let set3;
-		if(this.equal(sentence2)) 
+		if(this.equal(sentence2))
 			return 0;
 		else if(isSubSet(set1, set2))
 		{
@@ -94,10 +94,18 @@ export class MinesweeperAI
 		//Ширина и высота поля игры
 		this.dimension = dimension;
 
-		//Следит за тем, какие ячейки были нажаты 
+		//Следит за тем, какие ячейки были нажаты
 		this.moves_made = new Set();
 
 		//Следит за ячейками, которые считаются безопасными или минами
+		this.mines = new Set();
+		this.safes = new Set();
+		this.knowledge = [];
+	}
+
+	start()
+	{
+		this.moves_made = new Set();
 		this.mines = new Set();
 		this.safes = new Set();
 		this.knowledge = [];
@@ -122,9 +130,9 @@ export class MinesweeperAI
 				else
 				{
 					this.knowledge[i] = sent1;
-				} 
-			} 
-		} 
+				}
+			}
+		}
 	}
 
 	mark_safe(cell)
@@ -141,7 +149,7 @@ export class MinesweeperAI
 				if(this.knowledge[i].cells.size == 0 || this.has_sentence(sent1))
 				{
 					this.knowledge.splice(i, 1);
-					--i; 
+					--i;
 				}
 				else
 				{
@@ -161,7 +169,7 @@ export class MinesweeperAI
 		 * 1) пометить ячейку, как сделанный ход
 		 * 2) пометить ячейку, как безопасную, обновить все предложения базы знаний, которые содержат эту ячейку
 		 * 3) добавить новое предложение в базу знаний
-		 * на основе значений cell и count, предложение содержит только те ячейки, 
+		 * на основе значений cell и count, предложение содержит только те ячейки,
 		 * состояние которых не определено.
 		 * 4) пометить дополнительные ячейки как безопасные или как мины,
 		 * если это можно сделать на основе базы знаний ИИ.
@@ -169,9 +177,9 @@ export class MinesweeperAI
 		 * быть выведены из существующих знаний.
 		 */
 		try
-		{ 
+		{
 			this.moves_made.add(cell);
-			this.mark_safe(cell); 
+			this.mark_safe(cell);
 			this.add_sentence(cell, count);
 			this.infer();
 		}
@@ -187,12 +195,12 @@ export class MinesweeperAI
 	make_safe_move()
 	{
 		/* Возвращает безопасную ячейку для выбора на поле Сапёра.
-		 * Ход должен быть известен как безопасный и ещё не был сделан. 
+		 * Ход должен быть известен как безопасный и ещё не был сделан.
 		 * Функция может использовать this.mines, this.safes, this.moves_made,
 		 * но не должна их изменять.
 		 */
 		if(this.safes.size > 0)
-		{ 
+		{
 
 			let  move = [...difference(this.safes, this.moves_made)][0];
 			return move;
@@ -217,16 +225,16 @@ export class MinesweeperAI
 		boardSet = difference(boardSet, this.mines);
 		board = [...boardSet];
 		if(board.length > 0)
-		{ 
-			const index = Math.floor(Math.random() * board.length); 
+		{
+			const index = Math.floor(Math.random() * board.length);
 			return board[index];
-		}else 
+		}else
 			return undefined;
 	}
 
-	
-	add_sentence(cell, count) 	
-	//Добавляет предложение используя значение cell, count, учитывает только те ячейки, 
+
+	add_sentence(cell, count)
+	//Добавляет предложение используя значение cell, count, учитывает только те ячейки,
 	//состояние которых не определено
 	{
 		let s1 = new Sentence(getNeighbors(cell, this.dimension), count);
@@ -238,7 +246,7 @@ export class MinesweeperAI
 		{
 			s1.mark_safe(safe);
 		}
-		if(s1.cells.size > 0 && !this.has_sentence(s1)) 
+		if(s1.cells.size > 0 && !this.has_sentence(s1))
 			this.knowledge.push(s1);
 	}
 
